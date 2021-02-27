@@ -6,13 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/oneBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="1"
+        android:textSize="20sp"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintStart_toStartOf="@+id/fiveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/numTextView" />
+
+    <Button
+        android:id="@+id/fiveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="5"
+        android:textSize="20sp"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintStart_toStartOf="@+id/tenBtn"
+        app:layout_constraintTop_toBottomOf="@+id/oneBtn" />
+
+    <Button
+        android:id="@+id/tenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="10"
+        android:textSize="20sp"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintStart_toStartOf="@+id/fiftyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/fiveBtn" />
+
+    <Button
+        android:id="@+id/fiftyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="50"
+        android:textSize="20sp"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintStart_toStartOf="@+id/hundredBtn"
+        app:layout_constraintTop_toBottomOf="@+id/tenBtn" />
+
+    <Button
+        android:id="@+id/hundredBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="100"
+        android:textSize="20sp"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/fiftyBtn"
+        tools:layout_editor_absoluteX="126dp" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="132dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="56dp"
+        android:text="SAVE"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/negativeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="-/+"
+        android:textSize="20sp"
+        app:backgroundTint="#E91E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numTextView" />
+
+    <EditText
+        android:id="@+id/numTextView"
+        android:layout_width="185dp"
+        android:layout_height="91dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number|textPersonName"
+        android:text="0"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.081" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

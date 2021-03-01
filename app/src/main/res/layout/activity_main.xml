@@ -10,10 +10,13 @@
         android:id="@+id/oneBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:layout_marginTop="50dp"
+        android:text="@string/oneBtn"
         android:textSize="20sp"
         app:backgroundTint="#2196F3"
-        app:layout_constraintStart_toStartOf="@+id/fiveBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numTextView" />
 
     <Button
@@ -21,10 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="5"
+        android:text="@string/fiveBtn"
         android:textSize="20sp"
         app:backgroundTint="#2196F3"
-        app:layout_constraintStart_toStartOf="@+id/tenBtn"
+        app:layout_constraintStart_toStartOf="@+id/oneBtn"
         app:layout_constraintTop_toBottomOf="@+id/oneBtn" />
 
     <Button
@@ -32,10 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="10"
+        android:text="@string/tenBtn"
         android:textSize="20sp"
         app:backgroundTint="#2196F3"
-        app:layout_constraintStart_toStartOf="@+id/fiftyBtn"
+        app:layout_constraintStart_toStartOf="@+id/fiveBtn"
         app:layout_constraintTop_toBottomOf="@+id/fiveBtn" />
 
     <Button
@@ -43,10 +46,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="50"
+        android:text="@string/fiftyBtn"
         android:textSize="20sp"
         app:backgroundTint="#2196F3"
-        app:layout_constraintStart_toStartOf="@+id/hundredBtn"
+        app:layout_constraintStart_toStartOf="@+id/tenBtn"
         app:layout_constraintTop_toBottomOf="@+id/tenBtn" />
 
     <Button
@@ -54,51 +57,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="100"
+        android:text="@string/hundredBtn"
         android:textSize="20sp"
         app:backgroundTint="#2196F3"
-        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fiftyBtn"
         app:layout_constraintTop_toBottomOf="@+id/fiftyBtn"
-        tools:layout_editor_absoluteX="126dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="132dp"
         android:layout_height="52dp"
         android:layout_marginBottom="56dp"
-        android:text="SAVE"
+        android:text="@string/saveBtn"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/negativeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="-/+"
-        android:textSize="20sp"
-        app:backgroundTint="#E91E63"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numTextView" />
-
     <EditText
         android:id="@+id/numTextView"
         android:layout_width="185dp"
-        android:layout_height="91dp"
+        android:layout_height="100dp"
+        android:background="#FFFFFF"
         android:ems="10"
         android:gravity="center"
-        android:inputType="number|textPersonName"
-        android:text="0"
+        android:inputType="number"
+        android:text="@string/numTextView"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.081"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/resetBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resetBtn"
+        android:textSize="20sp"
+        app:backgroundTint="#EF0E0E"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numTextView"
+        app:layout_constraintVertical_bias="0.902" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

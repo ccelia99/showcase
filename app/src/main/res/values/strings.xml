@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">showcase</string>
+    <string name="app_name">Showcase</string>
+    <string name="numTextView">0</string>
+    <string name="resetBtn">Reset</string>
+    <string name="hundredBtn">100</string>
+    <string name="fiftyBtn">50</string>
+    <string name="tenBtn">10</string>
+    <string name="fiveBtn">5</string>
+    <string name="oneBtn">1</string>
+    <string name="saveBtn">SAVE</string>
 </resources>

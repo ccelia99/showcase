@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 sb.append(currentDateandTime).append("\n");
 
                 FileInputStream fis = null;
-                //tama kay lukemassa fileen
+                //tama kay lukemassa filen
                 try {
                     fis = openFileInput(FILE_NAME);
                     InputStreamReader isr = new InputStreamReader(fis);

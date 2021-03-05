@@ -9,4 +9,5 @@
     <string name="oneBtn">1</string>
     <string name="saveBtn">SAVE</string>
     <string name="exType">Exercise type</string>
+    <string name="resultData">Result data</string>
 </resources>

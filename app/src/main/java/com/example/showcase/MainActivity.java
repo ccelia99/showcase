@@ -32,19 +32,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText numTextView = findViewById(R.id.numTextView);
+        EditText resultNum = findViewById(R.id.resultNum);
         EditText exType = findViewById(R.id.exType);
-        EditText editTextTextMultiLine = findViewById(R.id.editTextTextMultiLine);
-        EditText editTextDate = findViewById(R.id.editTextDate);
+
 
         Button oneBtn = (Button) findViewById(R.id.oneBtn);
         oneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText oldResult = (EditText) findViewById(R.id.numTextView);
+                EditText oldResult = (EditText) findViewById(R.id.resultNum);
                 int num = Integer.parseInt(oldResult.getText().toString());
                 num += 1;
-                TextView resultTextView = (TextView) findViewById(R.id.numTextView);
+                TextView resultTextView = (TextView) findViewById(R.id.resultNum);
                 resultTextView.setText(num + "");
             }
         });
@@ -53,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         fiveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText oldResult = (EditText) findViewById(R.id.numTextView);
+                EditText oldResult = (EditText) findViewById(R.id.resultNum);
                 int num = Integer.parseInt(oldResult.getText().toString());
                 num += 5;
-                TextView resultTextView = (TextView) findViewById(R.id.numTextView);
+                TextView resultTextView = (TextView) findViewById(R.id.resultNum);
                 resultTextView.setText(num + "");
             }
         });
@@ -65,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
         tenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText oldResult = (EditText) findViewById(R.id.numTextView);
+                EditText oldResult = (EditText) findViewById(R.id.resultNum);
                 int num = Integer.parseInt(oldResult.getText().toString());
                 num += 10;
-                TextView resultTextView = (TextView) findViewById(R.id.numTextView);
+                TextView resultTextView = (TextView) findViewById(R.id.resultNum);
                 resultTextView.setText(num + "");
             }
         });
@@ -77,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         fiftyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText oldResult = (EditText) findViewById(R.id.numTextView);
+                EditText oldResult = (EditText) findViewById(R.id.resultNum);
                 int num = Integer.parseInt(oldResult.getText().toString());
                 num += 50;
-                TextView resultTextView = (TextView) findViewById(R.id.numTextView);
+                TextView resultTextView = (TextView) findViewById(R.id.resultNum);
                 resultTextView.setText(num + "");
             }
         });
@@ -89,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         hundredBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText oldResult = (EditText) findViewById(R.id.numTextView);
+                EditText oldResult = (EditText) findViewById(R.id.resultNum);
                 int num = Integer.parseInt(oldResult.getText().toString());
                 num += 100;
-                TextView resultTextView = (TextView) findViewById(R.id.numTextView);
+                TextView resultTextView = (TextView) findViewById(R.id.resultNum);
                 resultTextView.setText(num + "");
             }
         });
@@ -101,9 +100,8 @@ public class MainActivity extends AppCompatActivity {
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num = 0;
-                TextView resultTextView = (TextView) findViewById(R.id.numTextView);
-                resultTextView.setText(num + "");
+                resultNum.setText(0 +"");
+                exType.getText().clear();
             }
         });
 
@@ -124,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //taman lisaa tuloksen StringBuilderiin
-                sb.append(numTextView.getText().toString()).append("\t");
+                sb.append(resultNum.getText().toString()).append("\t");
                 //tama lisaa harj.tyypin
                 sb.append(exType.getText().toString()).append("\t");
                 //tama lisaa timestampin
@@ -158,16 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 //second_activityyn. Sb tyhjennetaan myohemmin
                 secondActData = sb.toString();
 
-                        // tama tunkee koko StringBuilderin takaisin kentaan
-                editTextTextMultiLine.setText(secondActData);
-
-
-
-                //tama tulostaa timestampin
-                editTextDate.setText(currentDateandTime.toString());
-
-                FileOutputStream fos = null;
                 //tallennetaan failiin
+                FileOutputStream fos = null;
                 try {
                     fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
                     fos.write(sb.toString().getBytes());

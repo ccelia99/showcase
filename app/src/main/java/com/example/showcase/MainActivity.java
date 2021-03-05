@@ -1,5 +1,9 @@
 package com.example.showcase;
 
+import android.content.Intent;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,32 +11,33 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String FILE_NAME = "example.txt";
-    EditText mEditText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEditText = findViewById(R.id.numTextView);
+        EditText numTextView = findViewById(R.id.numTextView);
+        EditText exType = findViewById(R.id.exType);
+        EditText editTextTextMultiLine = findViewById(R.id.editTextTextMultiLine);
+        EditText editTextDate = findViewById(R.id.editTextDate);
 
         Button oneBtn = (Button) findViewById(R.id.oneBtn);
-        Button fiveBtn = (Button) findViewById(R.id.fiveBtn);
-        Button tenBtn = (Button) findViewById(R.id.tenBtn);
-        Button fiftyBtn = (Button) findViewById(R.id.fiftyBtn);
-        Button hundredBtn = (Button) findViewById(R.id.hundredBtn);
-        Button resetBtn = (Button) findViewById(R.id.resetBtn);
-        Button saveBtn = (Button) findViewById(R.id.saveBtn) ;
-
         oneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button fiveBtn = (Button) findViewById(R.id.fiveBtn);
         fiveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button tenBtn = (Button) findViewById(R.id.tenBtn);
         tenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button fiftyBtn = (Button) findViewById(R.id.fiftyBtn);
         fiftyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button hundredBtn = (Button) findViewById(R.id.hundredBtn);
         hundredBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button resetBtn = (Button) findViewById(R.id.resetBtn);
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,15 +107,73 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button saveBtn = (Button) findViewById(R.id.saveBtn) ;
         saveBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                String text = mEditText.getText().toString();
+                String FILE_NAME = "resultData.txt";
+                StringBuilder sb = new StringBuilder();
+                String text;
+                String secondActData;
+
+                //Timespampin paivamaara
+                Date date = Calendar.getInstance().getTime();
+                DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String currentDateandTime = sdf.format(date);
+
+
+                //taman lisaa tuloksen StringBuilderiin
+                sb.append(numTextView.getText().toString()).append("\t");
+                //tama lisaa harj.tyypin
+                sb.append(exType.getText().toString()).append("\t");
+                //tama lisaa timestampin
+                sb.append(currentDateandTime).append("\n");
+
+                FileInputStream fis = null;
+                //tama kay lukemassa fileen
+                try {
+                    fis = openFileInput(FILE_NAME);
+                    InputStreamReader isr = new InputStreamReader(fis);
+                    BufferedReader br = new BufferedReader(isr);
+
+                    while ((text = br.readLine()) != null) {
+                        sb.append(text).append("\n");
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                //tallenetaan StringBuilder sb Stringiin secondActData, jotta saadaan se siirtymaan
+                //second_activityyn. Sb tyhjennetaan myohemmin
+                secondActData = sb.toString();
+
+                        // tama tunkee koko StringBuilderin takaisin kentaan
+                editTextTextMultiLine.setText(secondActData);
+
+
+
+                //tama tulostaa timestampin
+                editTextDate.setText(currentDateandTime.toString());
+
                 FileOutputStream fos = null;
+                //tallennetaan failiin
                 try {
                     fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-                    fos.write(text.getBytes());
-                    mEditText.getText().clear();
+                    fos.write(sb.toString().getBytes());
+
+                    //tyhjentaa StringBuilderin
+                    sb.setLength(0);
                     Toast.makeText(MainActivity.this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
                             Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
@@ -121,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+
+                //SecondActivityn kutsu
+                Intent startIntent = new Intent(getApplicationContext(), SecondActivity.class);
+                startIntent.putExtra("com.example.showcase.listview", secondActData);
+                startActivity(startIntent);
             }
         });
 
